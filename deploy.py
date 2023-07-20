@@ -1,15 +1,14 @@
 from flask import Flask, render_template, request
-import pickle
+import joblib
 
 app = Flask(__name__)
-# load the model
-model = pickle.load(open('saved_model.sav', 'rb'))
+# Load the model
+model = joblib.load('saved_model1.joblib')
 
 @app.route('/')
 def home():
     result = ''
     return render_template('index.html', **locals())
-
 
 @app.route('/predict', methods=['POST', 'GET'])
 def predict():
