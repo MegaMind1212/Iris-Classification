@@ -1,11 +1,12 @@
 from flask import Flask, render_template, request
-import joblib
+import pickle
 import numpy as np
 
 app = Flask(__name__)
 
-# load the model
-model = joblib.load('saved_model1.joblib')
+# Load the model
+with open('saved_model1.pkl', 'rb') as file:
+    model = pickle.load(file)
 
 @app.route('/')
 def home():
